@@ -15,8 +15,22 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+
+from note.views import Note, NoteCollaborator, Label, AddLabelToNote
+from user.views import UserRegister, UserLogin, IsVerify
+
+router = DefaultRouter()
+router.register('user_register', UserRegister, basename='user_register')
+router.register('user_login', UserLogin, basename='user_login')
+# router.register('verify_user/<str:token>/', IsVerify, name='verify')
+router.register('note', Note, basename='note')
+router.register('collaborator', NoteCollaborator, basename='collaborator')
+router.register('label', Label, basename='label')
+router.register('label_note', AddLabelToNote, basename='label_note')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('user/', include('user.urls'))
+    path('', include(router.urls)),
+    path('verify_user/<str:token>/', IsVerify.as_view({'get':'list'}), name='verify')
 ]

@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user'
+    'rest_framework',
+    'user',
+    'note'
 ]
 
 MIDDLEWARE = [
@@ -133,9 +135,10 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = "ashish2000patil@gmail.com"
-EMAIL_HOST_PASSWORD = "brjkqcdglittcxka"
+EMAIL_HOST_PASSWORD = "tfeogtgwfecxnnqp"
 BASE_URL = "http://127.0.0.1:8000"
 
 JWT_EXP = datetime.utcnow() + timedelta(hours=1)
 REDIS_CONFIG = {"host": 'localhost', "port": 6379, "db": 0}
 
+APPEND_SLASH=False
