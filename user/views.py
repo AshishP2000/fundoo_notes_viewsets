@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework.views import APIView
 
 import user
 from fundoo_notes import settings
@@ -20,7 +21,7 @@ logging.basicConfig(filename='fundoo_notes.log', level=logging.INFO)
 
 class UserRegister(viewsets.ViewSet):
 
-    def list(self, request):
+    def create(self, request):
         """
         register: getting user_name,email,password and phone from user and saving in the database
         request: data from user
@@ -71,7 +72,7 @@ class UserLogin(viewsets.ViewSet):
 
 
 class IsVerify(viewsets.ViewSet):
-    def retrive(self, request, token):
+    def list(self, request, token):
         try:
             decode = JWT().decode(token=token)
             user = User.objects.get(id=decode.get('user_id'))
